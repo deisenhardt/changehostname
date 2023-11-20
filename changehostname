@@ -11,14 +11,14 @@
 usage()
 {
   printf "\n\n Usage: sudo changehostname <new hostname> \
-          \n updates /etc/hostname & /etc/hosts with user provided hostname \
+        \n\n updates /etc/hostname & /etc/hosts with user provided hostname \
         \n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \
           \n !! hostname can only contain specific characters     !! \
           \n !! valid characters are ASCII a-z, 0-9, & - (hyphen) !! \
           \n !!                                                   !! \
           \n !! changehostname must be run as root or sudo        !! \
           \n !!                                                   !! \
-        \n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n\n"
+          \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n\n"
 }
 
 sudo_check(){
