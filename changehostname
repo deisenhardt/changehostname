@@ -47,7 +47,7 @@ get_hostname()
 
   host1=$(cat /etc/hostname)
 
-  host2=(cat /etc/hosts | grep "127\.0" | grep -v "localhost" | head -1 | awk '{print $2}')
+  host2=$(cat /etc/hosts | grep "127\.0" | grep -v "localhost" | head -1 | awk '{print $2}')
 
   # this should cover the broadest majority of systems as 
   # typically hosts will have only two entries in the 127 range
