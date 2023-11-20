@@ -74,6 +74,12 @@ change_hostname()
   printf "\n hostname in /etc/hosts \n"
   cat /etc/hosts | grep "127\.0" | grep -v "localhost"
 
+  # the change will affect all matches of the current hostname string 
+  # in /etc/hosts so even if there is also an ipv6 equivalent of 
+  # 127.0.1.1 where we checked to get the hostname within /etc/hosts, 
+  # the /g behaviour in sed will still update all matches
+  # /g(lobally) in the file
+
   printf "\n The hostname change will not be complete until the system is restarted \n\n"
 }
 
