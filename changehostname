@@ -1,24 +1,67 @@
 #! /bin/bash
 
-# (C) David Eisenhardt  GPL v2.0
-# https://github.com/deisenhardt/changehostname/
+#HELP00:           Script Name:  changehostname
+#HELP01:               Purpose:  simple one step to change hostname
+#HELP02:                 Owner:  David Eisenhardt
+#HELP03:               License:  GPL v3
+#HELP04:               Created:  2018 August
+#HELP05:              Category:  peripherals
+#HELP06:            Input File:  stdin
+#HELP07:           Output File:  stdout
+#HELP08:              Log path:  na
+#HELP09:                Syntax:  sudo changehostname [hostname]
+#HELP10:               Example:  sudo changehostname mynewhostname
+#HELP11:              Commands:  sed, cat 
+#HELP12:      Production Files:  /etc/hosts /etc/hostname
+#HELP13:    Ancillary Programs:  na
+#HELP14:     Ancillary Scripts:  na
+#HELP15:         Local Scripts:  no dependencies
+#HELP16: crontask/systemd srvc:  na
+#HELP17: task/service schedule:  na
+#HELP18:        Kernel Version:  any
+#HELP19:            DB Version:  na
+#HELP20:            Audit Date:  
+#HELP21:               Auditor:
+#HELP22:       Approve Date(s):
+#HELP23:           Approver(s):
+#HELP24: Date Checked Into CVS:
+#HELP25:   Checked Into CVS By:
+#HELP26:               Version:  1.1
+#HELP27:               Changes:  add/update output messages
+#HELP28:            Github url:  https://github.com/deisenhardt/changehostname/
+#HELP29:
+#HELP30:
 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Exit codes !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
-# functions  {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
-#{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+# 3 not sudo/root
+# 4 bad input string
+# 5 no input string
+
+##############################################################
+# flow of script / notes / todo ##############################
+##############################################################
+
+# some distros have instant / non-reboot-needed options to update the hostname 
+# outside the scope for this script
+
+#{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+# Define functions {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+#{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
 
 usage()
 {
   printf "\n\n Usage: sudo changehostname <new hostname> \
-        \n\n updates /etc/hostname & /etc/hosts with user provided hostname \
-        \n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \
-          \n !! hostname can only contain specific characters     !! \
-          \n !! valid characters are ASCII a-z, 0-9, & - (hyphen) !! \
-          \n !!                                                   !! \
-          \n !! changehostname must be run as root or sudo        !! \
-          \n !!                                                   !! \
-          \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n\n"
+          \n\n updates /etc/hostname & /etc/hosts with user provided hostname \
+          \n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \
+            \n !! hostname can only contain specific characters     !! \
+            \n !! valid characters are ASCII a-z, 0-9, & - (hyphen) !! \
+            \n !!                                                   !! \
+            \n !! changehostname must be run as root or sudo        !! \
+            \n !!                                                   !! \
+            \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n\n"
 }
 
 sudo_check(){
@@ -53,12 +96,10 @@ get_hostname()
   # typically hosts will have only two entries in the 127 range
   # 127.0.0.1 localhost
   # 127.0.1.1 hostname
-
 }
 
 change_hostname()
 { # we are applying changes as sudo
-
 
   printf "\n hostname in /etc/hostname \n"
   cat /etc/hostname
@@ -83,10 +124,9 @@ change_hostname()
   printf "\n The hostname change will not be complete until the system is restarted \n\n"
 }
 
-
-###########################################################################
-# main ####################################################################
-###########################################################################
+##############################################################
+# main program ###############################################
+##############################################################
 
 if [ $# -lt 1 ]; then
   usage && exit 5
@@ -102,19 +142,6 @@ else
   fi
 fi
 
-###########################################################################
-# notes ###################################################################
-###########################################################################
-
-# some distros have instant / non-reboot-needed options to update the hostname 
-# outside the scope for this script
-#
-# exit codes
-# 3 not sudo/root
-# 4 bad input string
-# 5 no input string
-
-###########################################################################
-# history #################################################################
-###########################################################################
-
+##############################################################
+# End ########################################################
+##############################################################
